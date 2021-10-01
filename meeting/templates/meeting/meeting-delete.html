@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}
+    Delete Meeting
+{% endblock title %}
+{% block content %}
+    <form action="." method="POST" class="p-10">
+        {% csrf_token %}
+        <h1 class="font-bold text-lg">Are you sure that you want to delete the meeting?</h1>
+        <button type="submit" class="bg-gray-700 px-5 py-3 text_center text-sm text-white rounded-md">Delete Meeting</button>
+    </form>
+{% endblock content %}

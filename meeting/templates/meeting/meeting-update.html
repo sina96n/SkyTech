@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}
+    Modify Meeting
+{% endblock title %}
+{% block content %}
+    <form action="." method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            {{ form }}
+        </table>
+        <button type="submit">Submit</button>
+    </form>
+    <a href="{% url 'meeting:meeting-delete' meeting.pk %}">Delete Meeting</a>
+{% endblock content %}

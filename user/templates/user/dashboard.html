@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}
+    Dashboard
+{% endblock title %}
+{% block content %}
+    <div class="flex flex-auto w-full p-5">
+        <div class="w-1/4 shadow-lg p-4">
+            <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{ user }} <sup class="text-sm text-gray-400">{% if role == 1 %}Operator{% else %}Attendant{% endif %}</sup></h1>
+            <ul class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
+                <li class="flex items-center py-3">
+                    <span>Username</span>
+                    <span class="ml-auto"><span
+                            class="bg-gray-500 py-1 px-2 rounded text-white text-sm">{{ user.username }}</span></span>
+                </li>
+                <li class="flex items-center py-3">
+                    <span>Email</span>
+                    <span class="ml-auto">{{ user.email }}</span>
+                </li>
+                <li class="flex items-center py-3">
+                    <a href="{% url 'user:user-update' user.pk %}" class="w-full bg-gray-700 p-3 text-center text-white rounded-md">
+                        Modify Details
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="w-3/4 ml-5 p-4 shadow-lg">
+            <div class="flex items-center p-3 justify-between rounded-md space-x-2 bg-gray-700 text-xlg text-white leading-8 mb-4">
+                <span class="tracking-wide font-bold">Meetings</span>
+                <div>
+                    {% if role == 1 %}
+                    <a href="{% url 'meeting:meeting-create' %}" class="tracking-wide bg-gray-500 text-white py-2 px-4 rounded-md">
+                        New Metting
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="flex flex-col space-y-4 my-5">
+                {% if meetings %}
+                    {% for meeting in meetings %}
+                    <div class="flex flex-row mb-4 bg-gray-200 w-full hover:bg-indigo-100 rounded-md">
+                        <div class="w-1/4">
+                            <a class="block relative h-full rounded overflow-hidden">
+                                <img alt="Cover" class="object-cover object-center w-72 h-44 block" 
+                                src="{{ meeting.thumbnail.url }}">
+                            </a>
+                        </div>
+                        <div class="flex flex-row w-3/4 px-4 py-4">
+                            <div class="w-3/5">
+                                
+                                <h1 class="text-gray-900 title-font text-lg font-bold">{{ meeting.title }}</h1>
+                                <h3 class="text-gray-900 title-font text-xs font-medium mt-2">
+                                    {{ meeting.description }}
+                                </h3>
+                            </div>
+                            <div class="w-2/5 px-5">
+                                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">Operator   : {{ meeting.operator }}</h3>
+                                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">Attendants : {{ meeting.attendants_num }}</h3>
+                                {% if meeting.is_open %}
+                                    <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">Status     : Open </h3>
+                                {% else %}
+                                    <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">Status     : Close </h3>
+                                {% endif %}
+                                <div class="my-2 py-2">
+                                    <a href="{% url 'meeting:meeting-detail' meeting.pk %}" class="bg-gray-700 px-5 py-3 text_center text-sm text-white rounded-md">
+                                        Enter The Meeting
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>        
+                    {% endfor %}
+                {% else %}
+                    <h1 class="text-lg font-bold p-5">There is no Meeting to show.</h1>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

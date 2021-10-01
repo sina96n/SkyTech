@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}
+    Modify
+{% endblock title %}
+{% block content %}
+    <form action="." method="POST">
+        {% csrf_token %}
+        <table>
+            {{ form }}
+        </table>
+        <button class="m-5" type="submit">Submit</button>
+        <a class="m-5" href="{% url 'user:password-change' %}">Password change</a>
+        <a class="m-5" href="{% url 'user:user-delete' user.pk %}">Delete Account</a>
+    </form>
+{% endblock content %}

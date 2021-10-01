@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}
+    Home
+{% endblock title %}
+{% block content %}
+    <div class="flex overflow-x-scroll space-x-4 m-5">
+        {% for meeting in meetings %}
+            <div class="mb-4 bg-gray-200 w-min-1/6 hover:bg-indigo-100 rounded-lg">
+                <a href="#" class="block relative h-48 rounded overflow-hidden">
+                    <img alt="Cover" class="object-cover object-center w-72 h-44 block" 
+                    src="{{ meeting.thumbnail.url }}">
+                </a>
+                <div class="w-72 pl-4 pr-4 pb-4">
+                    <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{ meeting.operator }}</h3>
+                    <h1 class="text-gray-900 title-font text-xs font-bold">{{ meeting.title }}</h1>
+                    <h3 class="text-gray-900 title-font text-xs font-medium mt-2">{{ meeting.snippet }} <a class="text-blue-600" href="#">read more</a></h3>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}
