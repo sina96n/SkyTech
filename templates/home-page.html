@@ -3,6 +3,23 @@
     Home
 {% endblock title %}
 {% block content %}
+
+    <div class="p-10">
+
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'user:dashboard' user.pk %}">Dashboard</a>
+        {% else %}
+            <a href="{% url 'user:signup' %}" 
+            class="mr-3 p-2 hover:bg-gray-700 hover:text-white text-black rounded-md">Sign Up</a>
+
+            <a href="{% url 'user:login' %}" 
+            class="mr-3 p-2 hover:bg-gray-700 hover:text-white text-black rounded-md">Login</a>
+
+        {% endif %}
+        
+    </div>
+
+
     <div class="flex overflow-x-scroll space-x-4 m-5">
         {% for meeting in meetings %}
             <div class="mb-4 bg-gray-200 w-min-1/6 hover:bg-indigo-100 rounded-lg">
@@ -18,4 +35,8 @@
             </div>
         {% endfor %}
     </div>
+
+
+
+
 {% endblock content %}

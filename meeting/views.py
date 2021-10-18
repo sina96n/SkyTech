@@ -8,12 +8,16 @@ from .decorators import (
     operator_required
 )
 
+from django.contrib.auth import get_user_model
+
 from user.models import Attendant, Operator
 
 import string
 import random
 from pathlib import Path
 
+
+User = get_user_model()
 
 lumbers = string.ascii_letters + string.digits
 
@@ -71,10 +75,20 @@ def meeting_detail(request, pk, *args, **kwargs):
             "role" : role,
         }
         return render(request, "meeting/meeting-detail.html", context)
+
+
     elif role == 2:
         context = {
             "meeting" : meeting,
             "url" : url,
+            "role" : role,
+        }
+        return render(request, "meeting/meeting-detail.html", context)
+
+
+    elif role == 3:
+        context = {
+            "meeting" : meeting,
             "role" : role,
         }
         return render(request, "meeting/meeting-detail.html", context)
@@ -119,6 +133,16 @@ def meeting_update(request, pk):
         
         return render(request, "meeting/meeting-update.html", context)
 
+
+
+def meeting_add_user(request, pk):
+
+    meeting = Meeting.objects.get(id=pk)
+    user = Attendant.objects.get(attendant_user_id=request.user.id)
+
+    meeting.attendants.add(user)
+
+    return redirect("meeting:meeting-detail", pk)
 
 
 @operator_check

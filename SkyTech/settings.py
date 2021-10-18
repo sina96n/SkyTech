@@ -38,8 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Third-party applications
+
     'user',
     'meeting',
+    'room',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -71,6 +75,16 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'SkyTech.wsgi.application'
+
+ASGI_APPLICATION = 'SkyTech.asgi.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+        # 'CONFIG': {
+        #     "hosts": [('127.0.0.1', 8000)],
+        # },
+    },
+}
 
 
 # Database

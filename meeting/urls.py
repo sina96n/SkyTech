@@ -1,6 +1,7 @@
 from django.urls.conf import path
 from .views import (
     kick_user,
+    meeting_add_user,
     meeting_create, 
     meeting_delete, 
     meeting_detail, 
@@ -14,5 +15,6 @@ urlpatterns = [
     path("<int:pk>/", meeting_detail, name='meeting-detail'),
     path("delete/<int:pk>/", meeting_delete, name='meeting-delete'),
     path("update/<int:pk>/", meeting_update, name='meeting-update'),
+    path("add/<int:pk>/", meeting_add_user, name='add-user'),
     path("kick/<int:pk>/<int:attendant_id>/", kick_user, name='kick-user'),
 ]

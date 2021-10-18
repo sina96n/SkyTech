@@ -11,6 +11,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include("user.urls", namespace="user")),
     path('meeting/', include("meeting.urls", namespace="meeting")),
+    path('room/', include("room.urls", namespace="room")),
     path('', home_page, name="home-page"),
 ]
 

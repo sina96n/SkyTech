@@ -9,17 +9,16 @@
               
             {% endblock title %}
         </title>
-        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
     </head>
 
     <body>
         {% include "navbar.html" %}
-        <hr>
-        <div>
-            {% block content %}
-              
-            {% endblock content %}
-        </div>
+        {% block content %}
+            
+        {% endblock content %}
+  
     </body>
 
 </html>

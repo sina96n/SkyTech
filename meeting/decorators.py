@@ -42,7 +42,7 @@ def role_check(func):
             if attendant.meeting_set.filter(id=meeting.id).exists():
                 return func(request, pk, role=2)
             else:
-                raise PermissionDenied 
+                return func(request, pk, role=3)
     return wrap
 
 

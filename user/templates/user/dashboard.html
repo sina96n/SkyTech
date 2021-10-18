@@ -3,6 +3,90 @@
     Dashboard
 {% endblock title %}
 {% block content %}
+
+
+<!-- <div class="d-flex bd-highlight">
+
+    <div class="p-4 bd-highlight">
+        <h5 class="text-dark">{{ user }} <sup>{% if role == 1 %}Operator{% else %}Attendant{% endif %}</h5>
+
+        <div class="list-group">
+            <a class="list-group-item list-group-item-action list-group-item-secondary">
+                <span class="fw-bold">Username</span>
+                <span class="ml-auto">{{ user.username }}</span>
+            </a>
+            <a class="list-group-item list-group-item-action list-group-item-secondary">
+                <span class="fw-bold">Email</span>
+                <span class="ml-auto">{{ user.email }}</span>
+            </a>
+        </div>
+
+        <a href="{% url 'user:user-update' user.pk %}" class="btn btn-primary my-2">Modify Details</a>
+    </div>
+
+    <div>
+        <div class="p-4 flex-grow-2 bd-highlight">
+           <div class="row justify-content-between">
+                <div class="col-4">
+                    <h5>Meetings</h5>
+                </div>
+                <div class="col-4">
+                    {% if role == 1 %}
+                    <a href="{% url 'meeting:meeting-create' %}"
+                    class="ml-4">
+                        New Metting
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        {% if meetings %}
+            {% for meeting in meetings %}
+
+            <div class="d-flex bd-highlight">
+                <div class="p-2 bd-highlight">
+                    <img class="" style="width: 250px;" src="{{ meeting.thumbnail.url }}" alt="">
+                </div>
+                <div class="p-2 flex-grow-1 bd-highlight" style="width: 720px;">
+                    <div class="d-flex bd-highlight" style="width: 1080px;">
+                        <div class="p-2 flex-grow-1 bd-highlight">
+                            <h4>{{ meeting.title }}</h4>
+                            <h6>{{ meeting.description }}</h6>
+                        </div>
+
+                        <div class="p-2 bd-highlight" style="width: 360px;">
+                            <h6><small>Operator   : {{ meeting.operator }}</small></h3>
+                                <h6><small>Attendants : {{ meeting.attendants_num }}</small></h6>
+                                {% if meeting.is_open %}
+                                    <h6><small>Status     : Open</small></h6>
+                                {% else %}
+                                    <h6><small>Status     : Close</small></h6>
+                                {% endif %}
+                                <div class="my-2 py-2">
+                                    <a href="{% url 'meeting:meeting-detail' meeting.pk %}" 
+                                    class="btn btn-primary my-2">
+                                    <small>Enter The Meeting</small>
+                                    </a>
+                                </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        
+            {% endfor %}
+        {% else %}
+            <h1 class="text-lg font-bold p-5">There is no Meeting to show.</h1>
+        {% endif %}
+
+    </div>
+
+
+
+</div> -->
+
+
+
     <div class="flex flex-auto w-full p-5">
         <div class="w-1/4 shadow-lg p-4">
             <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{ user }} <sup class="text-sm text-gray-400">{% if role == 1 %}Operator{% else %}Attendant{% endif %}</sup></h1>
@@ -25,7 +109,7 @@
         </div>
         <div class="w-3/4 ml-5 p-4 shadow-lg">
             <div class="flex items-center p-3 justify-between rounded-md space-x-2 bg-gray-700 text-xlg text-white leading-8 mb-4">
-                <span class="tracking-wide font-bold">Meetings</span>
+                <span class="tracking-wide font-semibold">Meetings</span>
                 <div>
                     {% if role == 1 %}
                     <a href="{% url 'meeting:meeting-create' %}" class="tracking-wide bg-gray-500 text-white py-2 px-4 rounded-md">
@@ -34,10 +118,10 @@
                     {% endif %}
                 </div>
             </div>
-            <div class="flex flex-col space-y-4 my-5">
+            <div class="flex flex-col space-y-4 my-5"> 
                 {% if meetings %}
                     {% for meeting in meetings %}
-                    <div class="flex flex-row mb-4 bg-gray-200 w-full hover:bg-indigo-100 rounded-md">
+                     <div class="flex flex-row mb-4 bg-gray-200 w-full hover:bg-indigo-100 rounded-md">
                         <div class="w-1/4">
                             <a class="block relative h-full rounded overflow-hidden">
                                 <img alt="Cover" class="object-cover object-center w-72 h-44 block" 
@@ -67,12 +151,13 @@
                                 </div>
                             </div>
                         </div>
-                    </div>        
+                    </div>    
+
                     {% endfor %}
                 {% else %}
                     <h1 class="text-lg font-bold p-5">There is no Meeting to show.</h1>
                 {% endif %}
-            </div>
+             </div>
         </div>
-    </div>
+    </div> 
 {% endblock content %}

@@ -19,11 +19,19 @@
                     <p>{{ meeting.description }}</p>
                 </div>
                 <div class="w-1/5 p-5">
+                    {% if role == 3 %}
                     <div class="mb-5">
-                        <a href="{{ url }}" class="bg-gray-700 px-5 py-3 text_center text-sm text-white rounded-md">
+                        <a href="{% url 'meeting:add-user' meeting.pk %}" class="bg-gray-700 px-5 py-3 text_center text-sm text-white rounded-md">
+                            Enroll Now
+                        </a>
+                    </div>
+                    {% else %}
+                    <div class="mb-5">
+                        <a href="{% url 'room:room' meeting.path %}" class="bg-gray-700 px-5 py-3 text_center text-sm text-white rounded-md">
                             Open The Meeting
                         </a>
                     </div>
+                    {% endif %}
                     <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">Operator   : {{ meeting.operator }}</h3>
                     <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">Attendants : {{ meeting.attendants_num }}</h3>
                 </div>
@@ -39,15 +47,15 @@
                                     d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                             </svg>
                         </span>
-                        <span class="tracking-wide">Attendants</span>
+                        <span class="tracking-wide text-lg">Attendants</span>
                     </div>
                     <table class="table-auto w-full">
                         <tr class="bg-gray-700 justify-between text-white items-center border-b-2">
-                            <th class="w1/4 py-3">Name</th>
-                            <th class="w1/4 py-3">Username</th>
-                            <th class="w1/4 py-3">Email</th>
-                            <th class="w1/4 py-3">Last Login</th>
-                            <th class="w1/4 py-3">Actions</th>
+                            <th class="w1/4 py-3 font-semibold">Name</th>
+                            <th class="w1/4 py-3 font-semibold">Username</th>
+                            <th class="w1/4 py-3 font-semibold">Email</th>
+                            <th class="w1/4 py-3 font-semibold">Last Login</th>
+                            <th class="w1/4 py-3 font-semibold">Actions</th>
                         </tr>
                         {% for attendant in attendants %}
                         <tr class="bg-gray-300 items-center px-5 py-3 border-b-2">

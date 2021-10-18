@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ meeting.title }}{% endblock title %}
+{% block content %}
+    <div class="mx-5 mt-5">
+        <textarea class="w-full bg-gray-300 border-2 border-black p-4" id="chat-log" cols="100" rows="20"></textarea><br>
+        <input class="w-full  bg-gray-300 border-2 border-black py-2 px-4" id="chat-message-input" type="text" size="100"><br>
+        <input class="w-full mt-5 bg-gray-700 text-white py-2 rounded-md" id="chat-message-submit" type="button" value="Send">
+        {{ room_name|json_script:"room-name" }}
+        <script src="{% static 'js/room-chat.js' %}"></script>
+    </div>
+{% endblock content %}
