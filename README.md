@@ -5,5 +5,5 @@
 # To run the Project :
 > Run:
 * python manage.py runserver
-# Website Demo :
+# Project Demo :
 > http://digitalviewer.pythonanywhere.com/
