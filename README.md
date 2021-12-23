@@ -6,4 +6,4 @@
 > Run:
 * python manage.py runserver
 # Project Demo :
-> http://digitalviewer.pythonanywhere.com/
+> not available for now!
