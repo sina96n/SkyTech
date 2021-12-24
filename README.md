@@ -6,4 +6,4 @@
 > Run:
 * python manage.py runserver
 # Project Demo :
-> not available for now!
+> not available for a while!
